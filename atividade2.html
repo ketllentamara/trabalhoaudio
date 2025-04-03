@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplo de Vídeo com JS</title>
+</head>
+<body>
+
+  <h1>Exemplo de Manipulação de Vídeo</h1>
+
+  <video id="video" width="320" height="240" controls poster="poster1.jpg">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    Seu navegador não suporta o elemento <code>video</code>.
+    <track src="legenda.vtt" kind="subtitles" srclang="pt" label="Português">
+  </video>
+
+  <br><br>
+
+  <button onclick="informarAtributos()">Informar Atributos do Vídeo</button>
+  <br><br>
+  <button onclick="alterarTamanho()">Alterar Tamanho do Vídeo</button>
+  <br><br>
+  <button onclick="alternarPoster()">Alternar Poster</button>
+
+  <script>
+    const videoElement = document.getElementById('video');
+
+    // Função 1: Informar atributos do vídeo
+    function informarAtributos() {
+      alert(`
+        currentSrc: ${videoElement.currentSrc}
+        controls: ${videoElement.controls}
+        autoplay: ${videoElement.autoplay}
+        loop: ${videoElement.loop}
+        poster: ${videoElement.poster}
+        id: ${videoElement.id}
+        width: ${videoElement.width}
+        height: ${videoElement.height}
+      `);
+    }
+
+    // Função 2: Alterar o tamanho do vídeo
+    function alterarTamanho() {
+      videoElement.width = 640; // Alterar largura
+      videoElement.height = 480; // Alterar altura
+    }
+
+    // Função 3: Alternar entre pôsteres
+    function alternarPoster() {
+      if (videoElement.poster === "poster1.jpg") {
+        videoElement.poster = "poster2.jpg"; // Troca para o segundo pôster
+      } else {
+        videoElement.poster = "poster1.jpg"; // Troca para o primeiro pôster
+      }
+    }
+
+    // Função 4: Detecção de pausa ou fim do vídeo
+    videoElement.addEventListener('pause', function() {
+      alert("O vídeo foi pausado.");
+    });
+
+    videoElement.addEventListener('ended', function() {
+      alert("O vídeo foi finalizado.");
+    });
+
+    // Exemplo de videoWidth e videoHeight
+    console.log("Largura do vídeo: ", videoElement.videoWidth);
+    console.log("Altura do vídeo: ", videoElement.videoHeight);
+
+    // Exemplo de canPlayType
+    const canPlay = videoElement.canPlayType('video/mp4');
+    console.log("Pode reproduzir vídeo mp4? ", canPlay);
+  </script>
+
+</body>
+</html>
