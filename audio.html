@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<audio id="audio" controls>
+  <source src="gu10535.mp3" type="audio/mp3">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
+<br>
+<button onclick="mostrarTempo()">Mostrar Tempo Atual</button>
+<button onclick="Mute()">Ativar/Desativar</button>
+<button onclick="AnalisarPausa()">Pausado?</button>
+<button onclick="alterarVelocidade()">Velocidade</button>
+<button onclick="carregarMidia()">Recarregar</button>
+<button onclick="mostrarDuracao()">Duração?</button>
+<button onclick="verificarFim()">Terminou?</button>
+
+<script>
+  function mostrarTempo() {
+    var audio = document.getElementById('audio');
+    alert("Tempo atual: " + audio.currentTime.toFixed(2) + " segundos");
+  }
+
+  function Mute(){
+    var audio = document.getElementById('audio');
+    audio.muted = !audio.muted;
+  }
+
+  function AnalisarPausa() {
+    var audio = document.getElementById('audio');
+    if (audio.paused) {
+      alert("O áudio está pausado.");
+    } else {
+      alert("O áudio está tocando.");
+    }
+  }
+
+  function alterarVelocidade() {
+    var audio = document.getElementById('audio');
+    var velocidade = prompt("Digite a nova velocidade (exemplo: 1 para normal, 1.5 para 1.5x, 0.5 para 0.5x):");
+    audio.playbackRate = parseFloat(velocidade);
+    alert("A velocidade foi alterada para: " + audio.playbackRate);
+  }
+
+  function carregarMidia() {
+    var audio = document.getElementById('audio');
+    audio.load(); // Recarrega o áudio
+    alert("Mídia recarregada!");
+  }
+
+  function mostrarDuracao() {
+    var audio = document.getElementById('audio');
+    alert("A duração do áudio é: " + audio.duration.toFixed(2) + " segundos");
+  }
+
+  function verificarFim() {
+    var audio = document.getElementById('audio');
+    if (audio.currentTime >= audio.duration) {
+      alert("O áudio terminou.");
+    } else {
+      alert("O áudio ainda não terminou.");
+    }
+  }
+</script>
+
+</body>
+</html>
